@@ -2,9 +2,14 @@
   <div>
     <Navigation />
     <h1>Customers</h1>
+    <input type="text" v-model="search" placeholder="Search by ID or name...">
+    <h5>Click on a customer to view their details.</h5>
     <ul>
-      <h2>All Customers:</h2>
-      <li v-for="customer in customers" :key="customer.customer_id">{{ customer.first_name }} {{ customer.last_name }} - ID: {{customer.customer_id}}</li>
+      <li v-for="customer in customerSearch" :key="customer.customer_id">
+        <router-link :to="{ name: 'customer-details', params: { id: customer.customer_id } }">
+        {{ customer.first_name }} {{ customer.last_name }} (ID: {{ customer.customer_id }})
+        </router-link>
+      </li>
     </ul>
   </div>
 </template>
@@ -19,7 +24,20 @@ export default {
   },
   data () {
     return {
-      customers: []
+      customers: [],
+      search: ''
+    }
+  },
+  computed: {
+    customerSearch () {
+      return this.customers.filter((customer) => {
+        const query = this.search.toUpperCase()
+        return (
+          customer.customer_id.toString().includes(query) ||
+          customer.first_name.toString().includes(query) ||
+          customer.last_name.toString().includes(query)
+        )
+      })
     }
   },
   created () {

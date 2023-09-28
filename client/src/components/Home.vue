@@ -6,7 +6,7 @@
       <h2>Top Picks:</h2>
       <li v-for="(film, index) in films" :key="film.film_id">
         <router-link :to="{ name: 'movie-details', params: { id: film.film_id } }">
-        #{{ index+1 }}: {{ film.title }} {{ film.description }}
+        #{{ index+1 }}: {{ film.title }}
         </router-link>
       </li>
       <h2>Top Actors:</h2>

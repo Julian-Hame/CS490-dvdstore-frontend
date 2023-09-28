@@ -7,6 +7,9 @@
             <h4>Age Rating: {{ film.rating }}</h4>
             <h4>Special Features: {{ film.special_features }}</h4>
         </div>
+        <div v-for="genre in genres" :key="genre.film_id">
+            <h4>Genre: {{ genre.name }}</h4>
+        </div>
     </div>
 </template>
 
@@ -17,13 +20,21 @@ export default {
   props: ['id'],
   data () {
     return {
-      films: []
+      films: [],
+      genres: []
     }
   },
   created () {
     axios.get(`http://localhost:8081/api/film/${this.id}`)
       .then(response => {
         this.films = response.data
+      })
+      .catch(error => {
+        console.error(error)
+      })
+    axios.get(`http://localhost:8081/api/film-genre/${this.id}`)
+      .then(response => {
+        this.genres = response.data
       })
       .catch(error => {
         console.error(error)

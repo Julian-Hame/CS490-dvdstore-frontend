@@ -5,7 +5,7 @@
         </div>
         <h2>Most rented films featuring this actor:</h2>
         <div v-for="(film, index) in films" :key="film.film_id">
-            <h4>#{{ index+1 }}: {{ film.title }}</h4>
+            <h4>#{{ index+1 }}: {{ film.title }} | Rented {{ film.rented }} times!</h4>
         </div>
     </div>
 </template>

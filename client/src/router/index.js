@@ -5,6 +5,7 @@ import Movies from '@/components/Movies'
 import Customers from '@/components/Customers'
 import MovieDetail from '@/components/MovieDetail'
 import ActorDetail from '@/components/ActorDetail'
+import CustomerDetail from '@/components/CustomerDetail'
 
 Vue.use(Router)
 
@@ -40,6 +41,12 @@ export default new Router({
       path: '/actors/:id',
       name: 'actor-details',
       component: ActorDetail,
+      props: true
+    },
+    {
+      path: '/customer/:id',
+      name: 'customer-details',
+      component: CustomerDetail,
       props: true
     }
   ]
