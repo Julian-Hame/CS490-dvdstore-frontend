@@ -1,5 +1,9 @@
 # dvdstore-frontend
 
+## Video Demo:
+(Video filesize was too large for GitHub so the demo is on YouTube now)
+https://youtu.be/2zSEOInlEfE
+
 > DVD Store frontend
 
 ## Build Setup
