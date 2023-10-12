@@ -20,13 +20,13 @@
               <label for="storeId">Store ID:</label>
               <input type="text" id="storeId" v-model="customer.store_id" />
               <h4></h4>
-              <button @click="saveChanges(customer)">Save Changes</button>
+              <button @click="editCustomer(customer)">Save Changes</button>
           </form>
       </div>
       <h4>-----------------------------------------------------------------</h4>
       <h2>Films rented:</h2>
       <div v-for="film in rents" :key="film.film_id">
-          <h4>{{ film.title }}</h4>
+        <h4>{{ film.title }} | Return status: {{ film.return_date ? film.return_date : 'Not returned' }}</h4>
       </div>
   </div>
 </template>
@@ -43,7 +43,7 @@ export default {
     }
   },
   methods: {
-    saveChanges (customer) {
+    editCustomer (customer) {
       const id = customer.customer_id
       const updatedCustomer = {
         first_name: customer.first_name,
@@ -54,6 +54,7 @@ export default {
       axios.put(`http://localhost:8081/api/customer/${id}/update`, updatedCustomer)
         .then(response => {
           console.log('Customer successfully updated')
+          location.reload()
         })
         .catch(error => {
           console.error('Error updating customer:', error)
